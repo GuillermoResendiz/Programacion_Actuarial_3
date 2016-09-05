@@ -128,7 +128,48 @@ m
 
 #LECTURA DE DATOS
 getwd()
-setwd("~/GitHub/Programacion_Actuarial_3")
-data<- read.csv("Datos.csv")
-data<- read.table("Datos.csv", F, ",")
+setwd("~/GitHub/Programacion_Actuari?al_3",nrows= 10)
+data<- read.table("Datos.csv", T, ",", nrows= 100)
+clases <- sapply(data, class)#para facilitar la leectura de los datos
+data <- read.table("Datos.csv", T, ",", colClasses = clases)
 data
+
+
+#uso de dput y dget
+y <- data.frame(a=1,b= "a")
+dput(y)
+dput(y, file= "y.R")
+nueva.y <- dget("y.R")
+y
+nueva.y
+
+x <- "Progamacion"
+y <- data.frame(a=1, b="a")
+dump(c("x","y"), file = "data.R")
+rm(x,y)
+source("data.R")
+
+aq<- data.frame(airquality)
+dump(c("aq"), file = "airquality.R")
+aq
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
