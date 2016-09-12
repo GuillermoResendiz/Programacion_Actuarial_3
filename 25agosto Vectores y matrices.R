@@ -153,19 +153,147 @@ aq<- data.frame(airquality)
 dump(c("aq"), file = "airquality.R")
 aq
 
+con <- url("http://www.fcfm.buap.mx/", "r")
+x<- readLines(con, 7)
+x
+
+#Subconjuntos
+x<- c("a","b","c","c","d","e")
+x
+#extraemos elementos con []
+x[1]
+x[2]
+#también podemos extraer una secuencia de elementos
+x[1:4]
+#es posible extraer elementos que cumplan con una condición
+x[x>"b"]
+#de manera equivalente con un vector lógico
+u<- x== "c"
+u
+x[u]
+
+#creamos una lista
+x<- list(foo= 1:4, bar = 0.6)
+#???extraemos el primer elemento de la lista,
+#este elemento es una lisa que contiene una secuencia
+x[1]
+
+#extraemos nuevamente el primer elemento de la lista
+#ahora el elemento es una secuencia solamente
+x[[1]]
+
+#extracción por nombre
+x$bar
+x["bar"]
+x[["bar"]]
+#para extraer el elemento de una de las listas de x
+x$foo[2]
+
+x<- list(foo= 1:4, bar = 0.6, baz = "Hola")
+x[c(1,3)] #se extrae el foo y el baz
+x[[c(1,3)]] #se extrae el tercer elemento de la primera lista, también funciona con x[[1]][[3]]
+name<- "foo"
+x[[name]] #extrae 1 2 3 4 
+x$name #regresa NULL porque tienes que especificar con foo
+
+x <- matrix(1:6,2,3)
+x
+x[1,2] #extraer un elemento de la matriz
+x[1,] #extraer tora una fila
+x[,2] #columna
+
+x[1,2] #el resultado será un vector
+x[1,2, drop=F] #el resultado será una matriz
+
+x <- list(aarkvar= 1:5)
+x$aarkvar#extraerá el elemento aarkvar porque $ no pide coincidencia exacta
+x[["a"]] #regresará NULL porque sí pide coincidencia exacta pero se arregla con:
+x[["a", exact= F]]
+
+
+#valores faltantes
+airquality[1:6,]
+completos <- complete.cases(airquality)
+completos
+airquality[completos,] #para extraer solo las filas que tienen valores completos (sin NA)
+airquality[completos,][1:6,] #las primeras 6 filas con valores completos
+airquality[1:6,][completos,] 
+
+
+#OPERACIONES
+x<- 1:4; y<- 6:9
+x+y 
+x>2
+x>=2
+y ==8
+x*y
+x/y
+
+
+x<- matrix(1:4, 2,2); y<- matrix(rep(10,4),2,2)
+x*y
+x/y
+x %*% y #para la multiplicación de matrices con el método original
+
+
+
+for (i in 1:10){
+  print(i)
+}
+
+x<- c("a", "b", "c", "d")
+for (i in seq_along(x)){
+  print(x[i])
+}
+  
+
+for(letra in x){
+  print(letra)
+}
+
+for(i in 4:1) print(x[i]) 
+
+m <- matrix(1:6,2, 3)
+m
+for(i in seq_len(nrow(m))){
+  for(j in seq_len(ncol(m))){
+    print(m[i,j])
+  }
+}
 
 
 
 
+arriba<- 0
+abajo<- 0
+x<- 1
 
-
-
-
-
-
-
-
-
+repeat{
+  z <- 5 
+cam<- vector("numeric")
+ ciclo<- while(z>=3 && z<=10){
+    print(z)
+    cam <- c(cam,z)
+    moneda <- rbinom(1,1,0.5)
+    if(moneda == 1) { #caminata aleatoria
+      z<- z+0.5
+      
+    } else {
+        z<- z-0.5
+    }
+ }
+ 
+ if(z<3){
+   arriba<- arriba+1
+ }else {
+   abajo<- abajo +1
+ }
+ x<- x+1
+ if(x==100){break}
+}
+ 
+arriba
+abajo
 
 
 
