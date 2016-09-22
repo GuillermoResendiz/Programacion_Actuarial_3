@@ -296,8 +296,62 @@ arriba
 abajo
 
 
+x0 <- 1
+tol <- 1e-8
+repeat {
+  x1 <- CalculaEstimado(x0)    #proceso parecido a iteraciones.
+  if(abs(x1-x0)< tol){
+    break
+  }else{
+    x0<-x1
+  }
+}
+
+for (i in 1:100){
+  if(i<= 20){
+    next  #se saltará las primeras 20
+  }
+}
+  
+
+#CREACIÓN DE FUNCIONES
+ suma2 <- function(x, y){
+   x + y
+ }
+
+ mayor10 <- function(x){
+   x[x>10]
+ }
+
+
+mayorque<- function(x,n){
+  x[x<n]
+}
+
+#calcular promedio por columna...
+  
+promedioCol <- function(x, quitar.NA= T){
+  nc <- ncol(x)
+  medias<- vector("numeric", nc)
+  for (i in 1:nc){
+    medias[i]<- mean(x[,i], na.rm = quitar.NA)
+  }
+  medias
+}
+
+
+#evaluación perezosa
+
+f <- function(a,b){
+  a^2                     #como b no se ocupa en la función, no habrá problema en
+}                         #poner el valor que sea, sólo se usara a.
 
 
 
 
+#el argumento "..."
+
+myplot <- function(x,y, type="l", ...){
+  plot(xy,type=type, ...)
+}
 
