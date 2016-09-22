@@ -29,4 +29,3 @@ corr<- function(directorio="C:/Users/guillermo/Documents/GitHub/Programacion_Act
   }
   final 
 }
-corr(, 600)
